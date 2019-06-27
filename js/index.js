@@ -17,43 +17,30 @@ class Tags {
       if (index === 0) {
         element = document.createElement("div");
         element.className = "div-product inline";
-        element.innerHTML = `
-          <span>${itemName}</span>
-          `;
+        element.innerHTML = `<span>${itemName}</span>`;
       } else if (index === 1) {
         element = document.createElement("span");
         element.className = "span-product inline";
-        element.innerHTML = `
-          <span>$${total}</span>
-          `;
+        element.innerHTML = `<span>$${total}</span>`;
       } else if (index === 2) {
         element = document.createElement("div");
         element.className = "div-label-input inline input";
-        element.innerHTML = `
-          <label>QTY</label>
-          <input type="number"/>
-          `;
+        element.innerHTML = `<label>QTY</label><input type="number"/>`;
       } else if (index === 3) {
         element = document.createElement("span");
         element.className = "span-total inline";
-        element.innerHTML = `
-          $0.00
-          `;
+        element.innerHTML = `$0.00`;
       } else if (index === 4) {
         element = document.createElement("button");
         element.className = "btn-delete btn";
-        element.innerHTML = `
-          Delete
-          `;
+        element.innerHTML = `Delete`;
       }
       divContainer.appendChild(element);
     });
   }
 }
 const title = document.createElement("h1");
-title.innerHTML = `
-  Ironhack <span class="break"></span>Merchandising Shop
-  `;
+title.innerHTML = `Ironhack <span class="break"></span>Merchandising Shop`;
 title.className = "title";
 body.prepend(title);
 
@@ -80,28 +67,20 @@ newRowContainer.className = "item-container";
 body.appendChild(newRowContainer);
 
 const inputItem = document.createElement("div");
-inputItem.innerHTML = `
-<input id ="input-item" type="text" placeholder="Type New Item"/>
-`;
+inputItem.innerHTML = `<input id ="input-item" type="text" placeholder="Type New Item"/>`;
 newRowContainer.appendChild(inputItem);
 
 const inputCost = document.createElement("div");
-inputCost.innerHTML = `
-<input id="input-cost" type="text" placeholder="Type the cost of the Item"/>
-`;
+inputCost.innerHTML = `<input id="input-cost" type="text" placeholder="Type the cost of the Item"/>`;
 newRowContainer.appendChild(inputCost);
 
 const createButton = document.createElement("button");
-createButton.innerHTML = `
-Create Item
-`;
+createButton.innerHTML = `Create Item`;
 createButton.id = "new-item-create";
 newRowContainer.appendChild(createButton);
 
 const btnSuccess = document.createElement("button");
-btnSuccess.innerHTML = `
-  Calculate Prices
-  `;
+btnSuccess.innerHTML = `Calculate Prices`;
 btnSuccess.id = "calc-prices-button";
 btnSuccess.className = "btn-success btn success";
 body.appendChild(btnSuccess);
@@ -115,7 +94,25 @@ function getPriceByProduct(itemNode) {}
 function updatePriceByProduct(productPrice, index) {}
 
 function getTotalPrice() {
-  console.log("funciona?");
+  var inputs = document.querySelectorAll("input");
+  var value = "";
+  var result = "";
+
+  for (var i = 0; i < inputs.length; i++) {
+    if (parseFloat(inputs[i].value) !== 0 && inputs[i].value !== "") {
+      var value = inputs[i].parentElement.previousSibling.textContent;
+      for (var n = 0; n < value.length; n++) {
+        if (value[n] === ".") {
+          result = result + value[n];
+        } else if (isNaN(value[n])) {
+        } else {
+          result = result + value[n];
+        }
+      }
+      result = (parseFloat(result) * parseFloat(inputs[i].value)).toFixed(2);
+      inputs[i].parentElement.nextSibling.innerHTML = `<span>$${result}</span>`;
+    }
+  }
 }
 
 function createQuantityInput() {}
