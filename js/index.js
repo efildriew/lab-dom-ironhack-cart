@@ -95,11 +95,13 @@ function updatePriceByProduct(productPrice, index) {}
 
 function getTotalPrice() {
   var inputs = document.querySelectorAll("input");
-  var value = "";
-  var result = "";
+  // var value = "";
+  // var result = "";
 
   for (var i = 0; i < inputs.length; i++) {
     if (parseFloat(inputs[i].value) !== 0 && inputs[i].value !== "") {
+      // var value = "";
+      var result = "";
       var value = inputs[i].parentElement.previousSibling.textContent;
       for (var n = 0; n < value.length; n++) {
         if (value[n] === ".") {
@@ -109,6 +111,7 @@ function getTotalPrice() {
           result = result + value[n];
         }
       }
+      inputs[i].parentElement.nextSibling.innerHTML = `<span></span>`;
       result = (parseFloat(result) * parseFloat(inputs[i].value)).toFixed(2);
       inputs[i].parentElement.nextSibling.innerHTML = `<span>$${result}</span>`;
     }
