@@ -11,9 +11,9 @@ class Tags {
     divContainer.className = "item-container";
     generalDiv.appendChild(divContainer);
 
-    let arr = Object.values(row);
+    let productRow = Object.values(row);
 
-    arr.forEach(function(element, index) {
+    productRow.forEach(function(element, index) {
       if (index === 0) {
         element = document.createElement("div");
         element.className = "div-product inline";
