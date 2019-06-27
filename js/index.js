@@ -100,7 +100,6 @@ function getTotalPrice() {
 
   for (var i = 0; i < inputs.length; i++) {
     if (parseFloat(inputs[i].value) !== 0 && inputs[i].value !== "") {
-      // var value = "";
       var result = "";
       var value = inputs[i].parentElement.previousSibling.textContent;
       for (var n = 0; n < value.length; n++) {
@@ -139,6 +138,10 @@ function createNewItem() {
 
   createItemButton = document.getElementById("new-item-create");
   deleteButtons = document.getElementsByClassName("btn-delete");
+
+  for (var i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("click", deleteItem);
+  }
 }
 
 // window.onload = function() {
@@ -152,6 +155,6 @@ calculatePriceButton.onclick = getTotalPrice;
 createItemButton.onclick = createNewItem;
 
 for (var i = 0; i < deleteButtons.length; i++) {
-  deleteButtons[i].onclick = deleteItem;
+  deleteButtons[i].addEventListener("click", deleteItem);
 }
 // };
